@@ -1509,7 +1509,7 @@
                 <div class="col-lg-6 animate-on-scroll slide-right">
                     <div class="about-content">
                         <div class="section-label" data-key="about-us">ЗА НАС</div>
-                        <h2 class="section-title">Специјализирани за <span class="highlight">електроинсталации</span></h2>
+                        <h2 class="section-title" data-key="specialized">Специјализирани за <span class="highlight">електроинсталации</span></h2>
                         <p><strong>ЕЛКОС</strong> е компанија специјализирана за проектирање и изведба на електроинсталации. Нудиме комплетни решенија во областа на електротехниката.</p>
                         <p>Со стручен тим и модерни технологии, гарантираме безбедност, ефикасност и квалитет во секоја фаза од проектот.</p>
                         <div class="row mt-4">
@@ -1968,12 +1968,10 @@
 
             // Setup Language Function
             function setupLanguage(language) {
-                console.log('Setting language to:', language);
                 document.querySelectorAll('[data-key]').forEach(element => {
                     const key = element.getAttribute('data-key');
                     if (translations[key]) {
                         element.textContent = translations[key][language];
-                        console.log(`Updated ${key} to ${language}`);
                     }
                 });
                 localStorage.setItem('elkos-lang', language);
