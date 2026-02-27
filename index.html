@@ -2071,15 +2071,33 @@
                 });
             });
 
-            // Check stored language on load
-            const storedLang = localStorage.getItem('elkos-lang') || 'mk';
-            langBtns.forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.dataset.lang === storedLang) {
-                    btn.classList.add('active');
-                }
-            });
-            setupLanguage(storedLang);
+            // Check stored language on load, or detect by IP
+            const storedLang = localStorage.getItem('elkos-lang');
+            
+            function applyLanguage(lang) {
+                langBtns.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.lang === lang) {
+                        btn.classList.add('active');
+                    }
+                });
+                setupLanguage(lang);
+            }
+
+            if (storedLang) {
+                applyLanguage(storedLang);
+            } else {
+                // Auto-detect language by IP geolocation
+                fetch('https://ipapi.co/json/')
+                    .then(res => res.json())
+                    .then(data => {
+                        const lang = data.country_code === 'MK' ? 'mk' : 'en';
+                        applyLanguage(lang);
+                    })
+                    .catch(() => {
+                        applyLanguage('mk');
+                    });
+            }
 
             // Copy Text on Contact Card Click
             const contactCards = document.querySelectorAll('.contact-card');
