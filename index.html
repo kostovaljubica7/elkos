@@ -1635,11 +1635,14 @@
                 <div class="col-lg-6 animate-on-scroll slide-right">
                     <div class="contact-form-card">
                         <h3 data-key="quote-title">Побарајте понуда</h3>
-                        <form>
-                            <input type="text" class="form-control-custom" placeholder="Име" data-placeholder-key="form-name">
-                            <input type="email" class="form-control-custom" placeholder="Емаил" data-placeholder-key="form-email">
-                            <input type="tel" class="form-control-custom" placeholder="Мобилен" data-placeholder-key="form-phone">
-                            <textarea class="form-control-custom" placeholder="Порака" data-placeholder-key="form-message"></textarea>
+                        <form action="https://formsubmit.co/kire@elkos.mk" method="POST">
+                            <input type="hidden" name="_subject" value="Нова понуда од elkos.mk">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_next" value="https://elkos.mk">
+                            <input type="text" name="name" class="form-control-custom" placeholder="Име" data-placeholder-key="form-name" required>
+                            <input type="email" name="email" class="form-control-custom" placeholder="Емаил" data-placeholder-key="form-email" required>
+                            <input type="tel" name="phone" class="form-control-custom" placeholder="Мобилен" data-placeholder-key="form-phone">
+                            <textarea name="message" class="form-control-custom" placeholder="Порака" data-placeholder-key="form-message" required></textarea>
                             <button type="submit" class="btn-submit" data-key="form-submit">Испрати</button>
                         </form>
                     </div>
