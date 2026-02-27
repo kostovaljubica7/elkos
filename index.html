@@ -1458,8 +1458,8 @@
     <section id="services" class="services-section">
         <div class="container">
             <div class="text-center mb-5 animate-on-scroll slide-up">
-                <div class="section-label">УСЛУГИ</div>
-                <h2 class="section-title">Услуги што ги нудиме</h2>
+                <div class="section-label" data-key="services">УСЛУГИ</div>
+                <h2 class="section-title" data-key="services-title">Услуги што ги нудиме</h2>
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 animate-on-scroll slide-up animate-delay-1">
@@ -1467,8 +1467,8 @@
                         <div class="service-icon">
                             <i class="fas fa-wrench"></i>
                         </div>
-                        <h4>Изведба</h4>
-                        <p>Професионална инсталација на електроенергетски системи со гарантиран квалитет и безбедност.</p>
+                        <h4 data-key="implementation">Изведба</h4>
+                        <p data-key="implementation-desc">Професионална инсталација на електроенергетски системи со гарантиран квалитет и безбедност.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 animate-on-scroll slide-up animate-delay-2">
@@ -1476,8 +1476,8 @@
                         <div class="service-icon">
                             <i class="fas fa-clipboard-check"></i>
                         </div>
-                        <h4>Трговија</h4>
-                        <p>Продажба и увоз на висококвалитетни електроматеријали од реномирани светски брендови, по најдобри цени.</p>
+                        <h4 data-key="sales">Трговија</h4>
+                        <p data-key="sales-desc">Продажба и увоз на висококвалитетни електроматеријали од реномирани светски брендови, по најдобри цени.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 animate-on-scroll slide-up animate-delay-3">
@@ -1485,8 +1485,8 @@
                         <div class="service-icon">
                             <i class="fas fa-drafting-compass"></i>
                         </div>
-                        <h4>Проектирање</h4>
-                        <p>Детално планирање и дизајн на електроинсталации според индивидуалните потреби на клиентите со висококвалитетни материјали.</p>
+                        <h4 data-key="design">Проектирање</h4>
+                        <p data-key="design-desc">Детално планирање и дизајн на електроинсталации според индивидуалните потреби на клиентите со висококвалитетни материјали.</p>
                     </div>
                 </div>
             </div>
@@ -1508,7 +1508,7 @@
                 </div>
                 <div class="col-lg-6 animate-on-scroll slide-right">
                     <div class="about-content">
-                        <div class="section-label">ЗА НАС</div>
+                        <div class="section-label" data-key="about-us">ЗА НАС</div>
                         <h2 class="section-title">Специјализирани за <span class="highlight">електроинсталации</span></h2>
                         <p><strong>ЕЛКОС</strong> е компанија специјализирана за проектирање и изведба на електроинсталации. Нудиме комплетни решенија во областа на електротехниката.</p>
                         <p>Со стручен тим и модерни технологии, гарантираме безбедност, ефикасност и квалитет во секоја фаза од проектот.</p>
@@ -1724,8 +1724,8 @@
     <section id="contact" class="contact-section">
         <div class="container">
             <div class="text-center mb-5">
-                <div class="section-label">КОНТАКТ</div>
-                <h2 class="section-title">Контактирајте нè</h2>
+                <div class="section-label" data-key="contact-us-title">КОНТАКТ</div>
+                <h2 class="section-title" data-key="contact-us-subtitle">Контактирајте нè</h2>
             </div>
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6">
@@ -1910,6 +1910,76 @@
                 });
             }
 
+            // Translations Object
+            const translations = {
+                "services": {
+                    "mk": "УСЛУГИ",
+                    "en": "SERVICES"
+                },
+                "services-title": {
+                    "mk": "Услуги што ги нудиме",
+                    "en": "Services we offer"
+                },
+                "implementation": {
+                    "mk": "Изведба",
+                    "en": "Implementation"
+                },
+                "implementation-desc": {
+                    "mk": "Професионална инсталација на електроенергетски системи со гарантиран квалитет и безбедност.",
+                    "en": "Professional installation of electrical power systems with guaranteed quality and safety."
+                },
+                "sales": {
+                    "mk": "Трговија",
+                    "en": "Sales"
+                },
+                "sales-desc": {
+                    "mk": "Продажба и увоз на висококвалитетни електроматеријали од реномирани светски брендови, по најдобри цени.",
+                    "en": "Sales and import of high-quality electrical materials from renowned global brands, at the best prices."
+                },
+                "design": {
+                    "mk": "Проектирање",
+                    "en": "Design"
+                },
+                "design-desc": {
+                    "mk": "Детално планирање и дизајн на електроинсталации според индивидуалните потреби на клиентите со висококвалитетни материјали.",
+                    "en": "Detailed planning and design of electrical installations according to individual client needs with high-quality materials."
+                },
+                "about-us": {
+                    "mk": "ЗА НАС",
+                    "en": "ABOUT US"
+                },
+                "specialized": {
+                    "mk": "Специјализирани за электроинсталации",
+                    "en": "Specialized for electrical installations"
+                },
+                "contact-us-title": {
+                    "mk": "КОНТАКТ",
+                    "en": "CONTACT"
+                },
+                "contact-us-subtitle": {
+                    "mk": "Контактирајте нè",
+                    "en": "Contact us"
+                },
+                "copied": {
+                    "mk": "Копирано!",
+                    "en": "Copied!"
+                }
+            };
+
+            // Setup Language Function
+            function setupLanguage(language) {
+                console.log('Setting language to:', language);
+                document.querySelectorAll('[data-key]').forEach(element => {
+                    const key = element.getAttribute('data-key');
+                    if (translations[key]) {
+                        element.textContent = translations[key][language];
+                        console.log(`Updated ${key} to ${language}`);
+                    }
+                });
+                localStorage.setItem('elkos-lang', language);
+                document.documentElement.lang = language;
+            }
+
             // Language Switcher
             const langBtns = document.querySelectorAll('.lang-btn');
             langBtns.forEach(btn => {
@@ -1917,14 +1987,7 @@
                     langBtns.forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
                     const lang = btn.dataset.lang;
-                    // Store language preference
-                    localStorage.setItem('elkos-lang', lang);
-                    // Redirect or reload with language parameter
-                    if (lang === 'en') {
-                        window.location.href = 'index-en.html';
-                    } else {
-                        window.location.href = 'index.html';
-                    }
+                    setupLanguage(lang);
                 });
             });
 
@@ -1936,6 +1999,7 @@
                     btn.classList.add('active');
                 }
             });
+            setupLanguage(storedLang);
 
             // Copy Text on Contact Card Click
             const contactCards = document.querySelectorAll('.contact-card');
@@ -1953,10 +2017,14 @@
                             existingNotification.remove();
                         }
 
+                        // Get current language
+                        const currentLang = localStorage.getItem('elkos-lang') || 'mk';
+                        const copiedText = translations['copied'][currentLang];
+
                         // Create and show notification
                         const notification = document.createElement('div');
                         notification.className = 'copy-notification';
-                        notification.innerHTML = '<i class="fas fa-check"></i> Копирано!';
+                        notification.innerHTML = '<i class="fas fa-check"></i> ' + copiedText;
                         card.appendChild(notification);
                         
                         setTimeout(() => {
