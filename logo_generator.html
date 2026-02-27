@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image with Shadow</title>
+    <style>
+        /* Container to center the image */
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        /* Image styling */
+        .logo {
+            display: block; /* Ensure it's a block element */
+            filter: drop-shadow(1px 4px 3px #000);
+            transition: filter 0.3s ease-in-out;
+            max-width: 100%;
+        }
+
+        /* Style for the download button */
+        .download-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #047857;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <!-- Image to be downloaded -->
+        <img id="logo" src="img/custom/logo-en-removebg.png" alt="Logo" class="logo">
+    </div>
+
+    <!-- Download Button -->
+    <button class="download-btn" onclick="downloadImage()">Download Image with Shadow</button>
+
+    <script>
+        function downloadImage() {
+            // Get the image element
+            const img = document.getElementById('logo');
+
+            // Create a canvas element to draw the image with the shadow effect
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            // Set the canvas size to match the image
+            canvas.width = img.width;
+            canvas.height = img.height;
+
+            // Apply the shadow effect on the canvas context
+            ctx.filter = 'drop-shadow(1px 4px 3px #000)';
+            // ctx.filter = 'drop-shadow(1px 1px 5px #000)';
+
+            // Draw the image on the canvas
+            ctx.drawImage(img, 0, 0);
+
+            // Convert the canvas content to a data URL (PNG)
+            const imageUrl = canvas.toDataURL('image/png');
+
+            // Create a link element to trigger the download
+            const link = document.createElement('a');
+            link.href = imageUrl;
+            link.download = 'image_with_shadow.png';  // The name of the downloaded image file
+            link.click();  // Trigger the download
+        }
+    </script>
+</body>
+</html>
