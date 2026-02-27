@@ -614,19 +614,7 @@
             background: linear-gradient(180deg, var(--bg-dark) 0%, #0a0d11 100%);
         }
 
-        .contact-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 30px;
-            text-align: center;
-            height: 100%;
-            transition: all 0.3s ease;
-        }
 
-        .contact-card:hover {
-            border-color: var(--primary);
-        }
 
         .contact-icon {
             width: 56px;
@@ -1212,6 +1200,54 @@
             background: var(--primary-dark);
             color: var(--bg-dark);
             transform: translateY(-2px);
+        }
+
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            height: 100%;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .contact-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .copy-notification {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            animation: fadeInOut 1.5s ease-in-out;
+            white-space: nowrap;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
         }
 
         .btn-hero-secondary {
@@ -1902,6 +1938,35 @@
                     }
                 });
             }
+
+            // Copy Text on Contact Card Click
+            const contactCards = document.querySelectorAll('.contact-card');
+            contactCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    let textToCopy = '';
+                    const pText = card.querySelector('p').textContent.trim();
+                    
+                    textToCopy = pText;
+                    
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        // Remove existing notification if any
+                        const existingNotification = card.querySelector('.copy-notification');
+                        if (existingNotification) {
+                            existingNotification.remove();
+                        }
+
+                        // Create and show notification
+                        const notification = document.createElement('div');
+                        notification.className = 'copy-notification';
+                        notification.innerHTML = '<i class="fas fa-check"></i> Копирано!';
+                        card.appendChild(notification);
+                        
+                        setTimeout(() => {
+                            notification.remove();
+                        }, 1500);
+                    });
+                });
+            });
         });
     </script>
 </body>
