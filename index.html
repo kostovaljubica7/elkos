@@ -1921,23 +1921,21 @@
                     localStorage.setItem('elkos-lang', lang);
                     // Redirect or reload with language parameter
                     if (lang === 'en') {
-                        window.location.href = 'index2-en.html';
+                        window.location.href = 'index-en.html';
                     } else {
-                        window.location.href = 'index2.html';
+                        window.location.href = 'index.html';
                     }
                 });
             });
 
             // Check stored language on load
-            const storedLang = localStorage.getItem('elkos-lang');
-            if (storedLang) {
-                langBtns.forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.dataset.lang === storedLang) {
-                        btn.classList.add('active');
-                    }
-                });
-            }
+            const storedLang = localStorage.getItem('elkos-lang') || 'mk';
+            langBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === storedLang) {
+                    btn.classList.add('active');
+                }
+            });
 
             // Copy Text on Contact Card Click
             const contactCards = document.querySelectorAll('.contact-card');
