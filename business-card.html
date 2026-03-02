@@ -337,6 +337,44 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.06);
         }
 
+
+
+        /* ===== CARD DOWNLOAD BUTTONS ===== */
+        .card-actions {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .card-download-btn {
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            gap: 6px;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .card-download-btn:hover {
+            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .card-download-btn i {
+            font-size: 12px;
+        }
+
         /* Print Styles */
         @media print {
             body {
@@ -360,6 +398,8 @@
             .label {
                 display: none;
             }
+
+
         }
     </style>
 </head>
@@ -385,7 +425,11 @@
                     </div>
                 </div>
             </div>
-            <p class="label">Front</p>
+            <div class="card-actions">
+                <p class="label" style="margin: 0; margin-right: auto;">Front - Dark</p>
+                <button class="card-download-btn" onclick="downloadCardPDF(document.querySelectorAll('.section')[0].querySelector('.card-front'))"><i class="fas fa-file-pdf"></i></button>
+                <button class="card-download-btn" onclick="downloadCardImage(document.querySelectorAll('.section')[0].querySelector('.card-front'))"><i class="fas fa-image"></i></button>
+            </div>
         </div>
 
         <div class="card-wrapper">
@@ -417,7 +461,11 @@
                     <div class="back-brand-name">ELKOS</div>
                 </div>
             </div>
-            <p class="label">Back</p>
+            <div class="card-actions">
+                <p class="label" style="margin: 0; margin-right: auto;">Back - Dark</p>
+                <button class="card-download-btn" onclick="downloadCardPDF(document.querySelectorAll('.section')[0].querySelector('.card-back'))"><i class="fas fa-file-pdf"></i></button>
+                <button class="card-download-btn" onclick="downloadCardImage(document.querySelectorAll('.section')[0].querySelector('.card-back'))"><i class="fas fa-image"></i></button>
+            </div>
         </div>
     </div>
 
@@ -442,7 +490,11 @@
                         </div>
                     </div>
                 </div>
-                <p class="label" style="color: #9ca3af;">Front</p>
+                <div class="card-actions">
+                    <p class="label" style="margin: 0; margin-right: auto; color: #9ca3af;">Front - White</p>
+                    <button class="card-download-btn" onclick="downloadCardPDF(document.querySelectorAll('.section-light').querySelector('.section').querySelector('.card-front'))"><i class="fas fa-file-pdf"></i></button>
+                    <button class="card-download-btn" onclick="downloadCardImage(document.querySelectorAll('.section-light').querySelector('.section').querySelector('.card-front'))"><i class="fas fa-image"></i></button>
+                </div>
             </div>
 
             <div class="card-wrapper">
@@ -474,10 +526,96 @@
                         <div class="back-brand-name">ELKOS</div>
                     </div>
                 </div>
-                <p class="label" style="color: #9ca3af;">Back</p>
+                <div class="card-actions">
+                    <p class="label" style="margin: 0; margin-right: auto; color: #9ca3af;">Back - White</p>
+                    <button class="card-download-btn" onclick="downloadCardPDF(document.querySelectorAll('.section-light').querySelector('.section').querySelector('.card-back'))"><i class="fas fa-file-pdf"></i></button>
+                    <button class="card-download-btn" onclick="downloadCardImage(document.querySelectorAll('.section-light').querySelector('.section').querySelector('.card-back'))"><i class="fas fa-image"></i></button>
+                </div>
             </div>
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <script>
+        // Convert all images to base64 on page load to avoid CORS tainted canvas
+        function convertImagesToBase64() {
+            const images = document.querySelectorAll('.card img');
+            images.forEach(img => {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.naturalWidth;
+                canvas.height = img.naturalHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+                try {
+                    img.src = canvas.toDataURL('image/png');
+                } catch(e) {
+                    // If image hasn't loaded yet, wait and retry
+                    img.onload = function() {
+                        const c = document.createElement('canvas');
+                        c.width = img.naturalWidth;
+                        c.height = img.naturalHeight;
+                        c.getContext('2d').drawImage(img, 0, 0);
+                        img.src = c.toDataURL('image/png');
+                    };
+                }
+            });
+        }
+        window.addEventListener('load', convertImagesToBase64);
+
+        // Capture card to clean canvas
+        function captureCard(cardElement) {
+            return html2canvas(cardElement, { 
+                scale: 4,
+                useCORS: true,
+                allowTaint: false,
+                backgroundColor: cardElement.classList.contains('white') ? '#ffffff' : '#0f1419',
+                logging: false
+            });
+        }
+
+        // Download individual card as PDF
+        function downloadCardPDF(cardElement) {
+            if (!cardElement) return;
+            
+            captureCard(cardElement).then(canvas => {
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF({
+                    orientation: 'landscape',
+                    unit: 'mm',
+                    format: [90, 50]
+                });
+                
+                const imgData = canvas.toDataURL('image/png');
+                pdf.addImage(imgData, 'PNG', 0, 0, 90, 50);
+                
+                const cardType = cardElement.classList.contains('card-front') ? 'Front' : 'Back';
+                const variant = cardElement.classList.contains('white') ? 'White' : 'Dark';
+                pdf.save(`ELKOS-Business-Card-${cardType}-${variant}-HighQuality.pdf`);
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('Error generating PDF. Please try again.');
+            });
+        }
+
+        // Download individual card as PNG
+        function downloadCardImage(cardElement) {
+            if (!cardElement) return;
+            
+            captureCard(cardElement).then(canvas => {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/png');
+                
+                const cardType = cardElement.classList.contains('card-front') ? 'Front' : 'Back';
+                const variant = cardElement.classList.contains('white') ? 'White' : 'Dark';
+                link.download = `ELKOS-Business-Card-${cardType}-${variant}-HighQuality.png`;
+                link.click();
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('Error capturing card. Please try again.');
+            });
+        }
+    </script>
 </body>
 </html>
