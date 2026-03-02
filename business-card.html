@@ -345,36 +345,116 @@
         .card-actions {
             display: flex;
             justify-content: center;
-            gap: 8px;
+            gap: 12px;
             margin-top: 12px;
+            align-items: center;
         }
 
-        .card-download-btn {
-            padding: 8px 16px;
+        .download-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-btn {
+            padding: 6px 6px;
             background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
             color: white;
             border: none;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            border-radius: 4px;
+            font-size: 11px;
             cursor: pointer;
-            gap: 6px;
+            box-shadow: 0 2px 6px rgba(34, 197, 94, 0.2);
+            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
-            box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
-            transition: all 0.3s ease;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            position: relative;
         }
 
-        .card-download-btn:hover {
+        .dropdown-btn:hover {
             background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
-            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
-            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(34, 197, 94, 0.3);
         }
 
-        .card-download-btn i {
-            font-size: 12px;
+        .dropdown-btn::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #9ca3af;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 9px;
+            white-space: nowrap;
+            margin-bottom: 6px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+        }
+
+        .dropdown-btn::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 3px solid transparent;
+            border-top-color: rgba(0, 0, 0, 0.7);
+            margin-bottom: -2px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+        }
+
+        .dropdown-btn:hover::after,
+        .dropdown-btn:hover::before {
+            opacity: 1;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #0f1419;
+            min-width: 140px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            padding: 8px 0;
+            z-index: 1;
+            border-radius: 4px;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            top: 100%;
+            margin-top: 4px;
+        }
+
+        .dropdown-content a {
+            color: #9ca3af;
+            padding: 10px 16px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+        }
+
+        .dropdown-content a i {
+            font-size: 10px;
+        }
+
+        .download-dropdown.active .dropdown-content {
+            display: block;
         }
 
         /* Print Styles */
@@ -429,8 +509,13 @@
             </div>
             <div class="card-actions">
                 <p class="label" style="margin: 0; margin-right: auto;">Front - Dark</p>
-                <button class="card-download-btn" onclick="downloadCardPDF(document.getElementById('dark-front'))"><i class="fas fa-file-pdf"></i></button>
-                <button class="card-download-btn" onclick="downloadCardImage(document.getElementById('dark-front'))"><i class="fas fa-image"></i></button>
+                <div class="download-dropdown" onclick="toggleDropdown(this)">
+                    <button class="dropdown-btn" data-tooltip="Download options"><i class="fas fa-download"></i></button>
+                    <div class="dropdown-content">
+                        <a onclick="downloadCardPDF(document.getElementById('dark-front'))"><i class="fas fa-file-pdf"></i> PDF</a>
+                        <a onclick="downloadCardImage(document.getElementById('dark-front'))"><i class="fas fa-image"></i> PNG</a>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -465,8 +550,13 @@
             </div>
             <div class="card-actions">
                 <p class="label" style="margin: 0; margin-right: auto;">Back - Dark</p>
-                <button class="card-download-btn" onclick="downloadCardPDF(document.getElementById('dark-back'))"><i class="fas fa-file-pdf"></i></button>
-                <button class="card-download-btn" onclick="downloadCardImage(document.getElementById('dark-back'))"><i class="fas fa-image"></i></button>
+                <div class="download-dropdown" onclick="toggleDropdown(this)">
+                    <button class="dropdown-btn" data-tooltip="Download options"><i class="fas fa-download"></i></button>
+                    <div class="dropdown-content">
+                        <a onclick="downloadCardPDF(document.getElementById('dark-back'))"><i class="fas fa-file-pdf"></i> PDF</a>
+                        <a onclick="downloadCardImage(document.getElementById('dark-back'))"><i class="fas fa-image"></i> PNG</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -494,8 +584,13 @@
                 </div>
                 <div class="card-actions">
                     <p class="label" style="margin: 0; margin-right: auto; color: #9ca3af;">Front - White</p>
-                    <button class="card-download-btn" onclick="downloadCardPDF(document.getElementById('white-front'))"><i class="fas fa-file-pdf"></i></button>
-                    <button class="card-download-btn" onclick="downloadCardImage(document.getElementById('white-front'))"><i class="fas fa-image"></i></button>
+                    <div class="download-dropdown" onclick="toggleDropdown(this)">
+                        <button class="dropdown-btn" data-tooltip="Download options"><i class="fas fa-download"></i></button>
+                        <div class="dropdown-content">
+                            <a onclick="downloadCardPDF(document.getElementById('white-front'))"><i class="fas fa-file-pdf"></i> PDF</a>
+                            <a onclick="downloadCardImage(document.getElementById('white-front'))"><i class="fas fa-image"></i> PNG</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -530,8 +625,13 @@
                 </div>
                 <div class="card-actions">
                     <p class="label" style="margin: 0; margin-right: auto; color: #9ca3af;">Back - White</p>
-                    <button class="card-download-btn" onclick="downloadCardPDF(document.getElementById('white-back'))"><i class="fas fa-file-pdf"></i></button>
-                    <button class="card-download-btn" onclick="downloadCardImage(document.getElementById('white-back'))"><i class="fas fa-image"></i></button>
+                    <div class="download-dropdown" onclick="toggleDropdown(this)">
+                        <button class="dropdown-btn" data-tooltip="Download options"><i class="fas fa-download"></i></button>
+                        <div class="dropdown-content">
+                            <a onclick="downloadCardPDF(document.getElementById('white-back'))"><i class="fas fa-file-pdf"></i> PDF</a>
+                            <a onclick="downloadCardImage(document.getElementById('white-back'))"><i class="fas fa-image"></i> PNG</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -541,6 +641,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
     <script>
+        // Toggle dropdown menu
+        function toggleDropdown(element) {
+            element.classList.toggle('active');
+            // Close other dropdowns
+            document.querySelectorAll('.download-dropdown.active').forEach(el => {
+                if (el !== element) el.classList.remove('active');
+            });
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.download-dropdown')) {
+                document.querySelectorAll('.download-dropdown.active').forEach(el => {
+                    el.classList.remove('active');
+                });
+            }
+        });
         // Convert all images to base64 on page load to avoid CORS tainted canvas
         function convertImagesToBase64() {
             const images = document.querySelectorAll('.card img');
@@ -581,6 +698,11 @@
         function downloadCardPDF(cardElement) {
             if (!cardElement) return;
             
+            // Close all dropdowns
+            document.querySelectorAll('.download-dropdown.active').forEach(el => {
+                el.classList.remove('active');
+            });
+            
             captureCard(cardElement).then(canvas => {
                 const { jsPDF } = window.jspdf;
                 const pdf = new jsPDF({
@@ -604,6 +726,11 @@
         // Download individual card as PNG
         function downloadCardImage(cardElement) {
             if (!cardElement) return;
+            
+            // Close all dropdowns
+            document.querySelectorAll('.download-dropdown.active').forEach(el => {
+                el.classList.remove('active');
+            });
             
             captureCard(cardElement).then(canvas => {
                 const link = document.createElement('a');
