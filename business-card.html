@@ -409,7 +409,7 @@
     <div class="section-title dark">Dark Version</div>
     <div class="section">
         <div class="card-wrapper">
-            <div class="card card-front">
+            <div id="dark-front" class="card card-front">
                 <div class="front-content">
                     <div class="front-brand">
                         <div class="logo-icon">
@@ -427,13 +427,13 @@
             </div>
             <div class="card-actions">
                 <p class="label" style="margin: 0; margin-right: auto;">Front - Dark</p>
-                <button class="card-download-btn" onclick="downloadCardPDF(document.querySelectorAll('.section')[0].querySelector('.card-front'))"><i class="fas fa-file-pdf"></i></button>
-                <button class="card-download-btn" onclick="downloadCardImage(document.querySelectorAll('.section')[0].querySelector('.card-front'))"><i class="fas fa-image"></i></button>
+                <button class="card-download-btn" onclick="downloadCardPDF(document.getElementById('dark-front'))"><i class="fas fa-file-pdf"></i></button>
+                <button class="card-download-btn" onclick="downloadCardImage(document.getElementById('dark-front'))"><i class="fas fa-image"></i></button>
             </div>
         </div>
 
         <div class="card-wrapper">
-            <div class="card card-back">
+            <div id="dark-back" class="card card-back">
                 <div class="back-left">
                     <div class="name">Kire Kostov</div>
                     <div class="title">Manager</div>
@@ -463,8 +463,8 @@
             </div>
             <div class="card-actions">
                 <p class="label" style="margin: 0; margin-right: auto;">Back - Dark</p>
-                <button class="card-download-btn" onclick="downloadCardPDF(document.querySelectorAll('.section')[0].querySelector('.card-back'))"><i class="fas fa-file-pdf"></i></button>
-                <button class="card-download-btn" onclick="downloadCardImage(document.querySelectorAll('.section')[0].querySelector('.card-back'))"><i class="fas fa-image"></i></button>
+                <button class="card-download-btn" onclick="downloadCardPDF(document.getElementById('dark-back'))"><i class="fas fa-file-pdf"></i></button>
+                <button class="card-download-btn" onclick="downloadCardImage(document.getElementById('dark-back'))"><i class="fas fa-image"></i></button>
             </div>
         </div>
     </div>
@@ -474,7 +474,7 @@
         <div class="section-title light">White Version</div>
         <div class="section">
             <div class="card-wrapper">
-                <div class="card card-front white">
+                <div id="white-front" class="card card-front white">
                     <div class="front-content">
                         <div class="front-brand">
                             <div class="logo-icon">
@@ -492,13 +492,13 @@
                 </div>
                 <div class="card-actions">
                     <p class="label" style="margin: 0; margin-right: auto; color: #9ca3af;">Front - White</p>
-                    <button class="card-download-btn" onclick="downloadCardPDF(document.querySelectorAll('.section-light').querySelector('.section').querySelector('.card-front'))"><i class="fas fa-file-pdf"></i></button>
-                    <button class="card-download-btn" onclick="downloadCardImage(document.querySelectorAll('.section-light').querySelector('.section').querySelector('.card-front'))"><i class="fas fa-image"></i></button>
+                    <button class="card-download-btn" onclick="downloadCardPDF(document.getElementById('white-front'))"><i class="fas fa-file-pdf"></i></button>
+                    <button class="card-download-btn" onclick="downloadCardImage(document.getElementById('white-front'))"><i class="fas fa-image"></i></button>
                 </div>
             </div>
 
             <div class="card-wrapper">
-                <div class="card card-back white">
+                <div id="white-back" class="card card-back white">
                     <div class="back-left">
                         <div class="name">Kire Kostov</div>
                         <div class="title">Manager</div>
@@ -528,8 +528,8 @@
                 </div>
                 <div class="card-actions">
                     <p class="label" style="margin: 0; margin-right: auto; color: #9ca3af;">Back - White</p>
-                    <button class="card-download-btn" onclick="downloadCardPDF(document.querySelectorAll('.section-light').querySelector('.section').querySelector('.card-back'))"><i class="fas fa-file-pdf"></i></button>
-                    <button class="card-download-btn" onclick="downloadCardImage(document.querySelectorAll('.section-light').querySelector('.section').querySelector('.card-back'))"><i class="fas fa-image"></i></button>
+                    <button class="card-download-btn" onclick="downloadCardPDF(document.getElementById('white-back'))"><i class="fas fa-file-pdf"></i></button>
+                    <button class="card-download-btn" onclick="downloadCardImage(document.getElementById('white-back'))"><i class="fas fa-image"></i></button>
                 </div>
             </div>
         </div>
