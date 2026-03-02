@@ -716,7 +716,7 @@
                 
                 const cardType = cardElement.classList.contains('card-front') ? 'Front' : 'Back';
                 const variant = cardElement.classList.contains('white') ? 'White' : 'Dark';
-                pdf.save(`ELKOS-Business-Card-${cardType}-${variant}-HighQuality.pdf`);
+                pdf.save(`ELKOS-Business-Card-${cardType}-${variant}.pdf`);
             }).catch(error => {
                 console.error('Error:', error);
                 alert('Error generating PDF. Please try again.');
@@ -738,7 +738,7 @@
                 
                 const cardType = cardElement.classList.contains('card-front') ? 'Front' : 'Back';
                 const variant = cardElement.classList.contains('white') ? 'White' : 'Dark';
-                link.download = `ELKOS-Business-Card-${cardType}-${variant}-HighQuality.png`;
+                link.download = `ELKOS-BusinessCard-${cardType}-${variant}.png`;
                 link.click();
             }).catch(error => {
                 console.error('Error:', error);
