@@ -483,9 +483,74 @@
 
 
         }
+
+        /* ===== TOP CONTROLS ===== */
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .toggle-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            color: #9ca3af;
+            font-size: 13px;
+            font-family: 'Inter', sans-serif;
+            user-select: none;
+        }
+
+        .toggle-label input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 36px;
+            height: 20px;
+            background: #374151;
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-label input[type="checkbox"]::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 16px;
+            height: 16px;
+            background: #9ca3af;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-label input[type="checkbox"]:checked {
+            background: #22c55e;
+        }
+
+        .toggle-label input[type="checkbox"]:checked::after {
+            left: 18px;
+            background: #ffffff;
+        }
+
+        .card.no-radius {
+            border-radius: 0;
+        }
     </style>
 </head>
 <body>
+
+    <!-- ===== CONTROLS ===== -->
+    <div class="controls">
+        <label class="toggle-label">
+            <input type="checkbox" id="radiusToggle" checked>
+            Rounded Corners
+        </label>
+    </div>
 
     <!-- ===== DARK VARIANT ===== -->
     <div class="section-title dark">Dark Version</div>
@@ -682,6 +747,13 @@
             });
         }
         window.addEventListener('load', convertImagesToBase64);
+
+        // Border radius toggle
+        document.getElementById('radiusToggle').addEventListener('change', function() {
+            document.querySelectorAll('.card').forEach(card => {
+                card.classList.toggle('no-radius', !this.checked);
+            });
+        });
 
         // Capture card to clean canvas
         function captureCard(cardElement) {
