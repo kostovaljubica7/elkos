@@ -716,7 +716,7 @@
                 
                 const cardType = cardElement.classList.contains('card-front') ? 'Front' : 'Back';
                 const variant = cardElement.classList.contains('white') ? 'White' : 'Dark';
-                pdf.save(`ELKOS-Business-Card-${cardType}-${variant}.pdf`);
+                pdf.save(`ELKOS-BusinessCard-${cardType}-${variant}.pdf`);
             }).catch(error => {
                 console.error('Error:', error);
                 alert('Error generating PDF. Please try again.');
