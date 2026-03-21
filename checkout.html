@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="mk" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="utf-8">
+    <title>ЕЛКОС | Порачај — Knipex алати</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #22c55e;
+            --primary-dark: #16a34a;
+            --bg-dark: #0f1419;
+            --bg-card: #1a1f26;
+            --bg-card-hover: #242b34;
+            --bg-inset: #0b0f14;
+            --text-white: #ffffff;
+            --text-gray: #9ca3af;
+            --text-muted: #6b7280;
+            --border-color: #2d3748;
+            --delivery-fee: 150;
+            --free-threshold: 5000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html { -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        h1,h2,h3,h4,h5,h6 { font-family: 'Poppins','Inter',sans-serif; font-weight: 600; }
+        a { text-decoration: none; color: inherit; transition: color 0.2s; }
+
+        /* ─── Navbar ─── */
+        .checkout-nav {
+            background: var(--bg-dark);
+            border-bottom: 1px solid var(--border-color);
+            padding: 14px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .checkout-nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .nav-brand .logo-icon {
+            width: 36px; height: 36px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .nav-brand .logo-icon i { color: #fff; font-size: 17px; }
+
+        .nav-steps {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .nav-steps .step { display: flex; align-items: center; gap: 6px; }
+        .nav-steps .step.active { color: var(--primary); font-weight: 700; }
+        .nav-steps .sep { color: var(--border-color); }
+
+        .btn-back-shop {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-gray);
+            font-size: 13px;
+            font-weight: 500;
+            padding: 6px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-back-shop:hover { color: var(--text-white); border-color: var(--primary); }
+
+        /* ─── Page Layout ─── */
+        .checkout-page {
+            padding: 40px 0 80px;
+        }
+
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 32px;
+            align-items: start;
+        }
+
+        @media (max-width: 960px) {
+            .checkout-grid { grid-template-columns: 1fr; }
+            .order-summary-col { order: -1; }
+        }
+
+        /* ─── Section Titles ─── */
+        .section-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        /* ─── Form Card ─── */
+        .form-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 20px;
+        }
+
+        .form-card-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-white);
+        }
+
+        .form-card-title i { color: var(--primary); font-size: 17px; }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+
+        .form-group { margin-bottom: 18px; }
+        .form-group:last-child { margin-bottom: 0; }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 7px;
+        }
+
+        .form-label .req { color: var(--primary); margin-left: 2px; }
+
+        .form-control-dark {
+            width: 100%;
+            background: var(--bg-inset);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-white);
+            padding: 11px 14px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-control-dark::placeholder { color: var(--text-muted); }
+
+        .form-control-dark:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(34,197,94,0.12);
+        }
+
+        .form-control-dark.error {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
+        }
+
+        .form-control-dark.textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .field-error {
+            font-size: 11px;
+            color: #ef4444;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .field-error.visible { display: block; }
+
+        /* ─── Payment Options ─── */
+        .payment-options { display: flex; flex-direction: column; gap: 12px; }
+
+        .payment-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: var(--bg-inset);
+            border: 1.5px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+            user-select: none;
+        }
+
+        .payment-option:hover { border-color: rgba(34,197,94,0.4); }
+        .payment-option.selected { border-color: var(--primary); background: rgba(34,197,94,0.05); }
+        .card-details-panel.visible ~ * { display: none; }
+        .payment-option.selected:has(~ .card-details-panel.visible) { border-radius: 12px 12px 0 0; }
+
+        .payment-option input[type="radio"] { display: none; }
+
+        .payment-radio {
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+            transition: border-color 0.2s;
+        }
+
+        .payment-option.selected .payment-radio {
+            border-color: var(--primary);
+        }
+
+        .payment-radio::after {
+            content: '';
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+            transform: scale(0);
+            transition: transform 0.15s ease;
+        }
+
+        .payment-option.selected .payment-radio::after { transform: scale(1); }
+
+        .payment-label strong {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 3px;
+        }
+
+        .payment-label span { font-size: 12px; color: var(--text-muted); }
+
+        .payment-bank-details {
+            background: rgba(34,197,94,0.06);
+            border: 1px solid rgba(34,197,94,0.2);
+            border-radius: 8px;
+            padding: 12px 14px;
+            margin-top: 14px;
+            font-size: 13px;
+            color: var(--text-gray);
+            display: none;
+        }
+
+        .payment-bank-details.visible { display: block; }
+        .payment-bank-details strong { color: var(--primary); display: block; margin-bottom: 4px; }
+
+        /* ─── Card Details Panel ─── */
+        .card-details-panel {
+            background: rgba(34,197,94,0.04);
+            border: 1px solid rgba(34,197,94,0.2);
+            border-radius: 0 0 12px 12px;
+            border-top: none;
+            padding: 18px;
+            display: none;
+        }
+
+        .card-details-panel.visible { display: block; }
+
+        .card-details-panel .card-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .card-details-panel .form-group { margin-bottom: 14px; }
+        .card-details-panel .form-group:last-child { margin-bottom: 0; }
+
+        .card-number-wrapper {
+            position: relative;
+        }
+
+        .card-number-wrapper .card-type-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+
+        .card-number-wrapper input { padding-right: 44px; letter-spacing: 2px; }
+
+        .card-security-note {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 14px;
+        }
+
+        .card-security-note i { color: var(--primary); }
+
+        /* ─── Order Summary ─── */
+        .summary-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            position: sticky;
+            top: 78px;
+        }
+
+        .summary-header {
+            padding: 20px 24px 16px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .summary-header a {
+            font-size: 12px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .summary-items { padding: 16px 24px; max-height: 320px; overflow-y: auto; }
+        .summary-items::-webkit-scrollbar { width: 3px; }
+        .summary-items::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 3px; }
+
+        .summary-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .summary-item:last-child { border-bottom: none; }
+
+        .summary-item-icon {
+            width: 44px; height: 44px;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .bg-kleshti  { background: linear-gradient(135deg, #1e2a3a 0%, #162032 100%); }
+        .bg-sekachi  { background: linear-gradient(135deg, #2a1e1e 0%, #321616 100%); }
+        .bg-kobra    { background: linear-gradient(135deg, #1e2a1e 0%, #162416 100%); }
+        .bg-klucev   { background: linear-gradient(135deg, #2a271e 0%, #322416 100%); }
+        .bg-lenti    { background: linear-gradient(135deg, #1e2028 0%, #161828 100%); }
+        .bg-specijal { background: linear-gradient(135deg, #27201e 0%, #241618 100%); }
+
+        .summary-item-info { flex: 1; min-width: 0; }
+
+        .summary-item-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-white);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .summary-item-qty { font-size: 12px; color: var(--text-muted); }
+
+        .summary-item-price {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-white);
+            white-space: nowrap;
+        }
+
+        /* ─── Totals ─── */
+        .summary-totals {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-inset);
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            font-size: 14px;
+        }
+
+        .total-row .label { color: var(--text-gray); }
+        .total-row .value { font-weight: 600; color: var(--text-white); }
+
+        .delivery-row .label { display: flex; align-items: center; gap: 6px; }
+
+        .delivery-badge {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 20px;
+            letter-spacing: 0.4px;
+        }
+
+        .delivery-badge.paid { background: rgba(234,179,8,0.15); color: #eab308; }
+        .delivery-badge.free { background: rgba(34,197,94,0.15); color: var(--primary); }
+
+        .delivery-value-free { color: var(--primary) !important; font-weight: 700 !important; }
+
+        .free-threshold-note {
+            font-size: 11px;
+            color: var(--text-muted);
+            padding: 6px 0 2px;
+            display: none;
+        }
+
+        .free-threshold-note.visible { display: block; }
+
+        .free-progress {
+            height: 3px;
+            background: var(--border-color);
+            border-radius: 3px;
+            margin: 6px 0 10px;
+            overflow: hidden;
+            display: none;
+        }
+
+        .free-progress.visible { display: block; }
+
+        .free-progress-bar {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 3px;
+            transition: width 0.4s ease;
+        }
+
+        .total-divider { height: 1px; background: var(--border-color); margin: 8px 0; }
+
+        .total-row.grand {
+            font-size: 18px;
+            font-weight: 800;
+            padding: 10px 0 4px;
+        }
+
+        .total-row.grand .value { color: var(--primary); font-size: 20px; }
+
+        /* ─── Submit Button ─── */
+        .summary-footer { padding: 20px 24px; border-top: 1px solid var(--border-color); }
+
+        .btn-place-order {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background: var(--primary);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 15px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: background 0.2s, transform 0.15s;
+        }
+
+        .btn-place-order:hover { background: var(--primary-dark); }
+        .btn-place-order:active { transform: scale(0.98); }
+        .btn-place-order:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        /* ─── Empty Cart State ─── */
+        .empty-checkout {
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--text-muted);
+        }
+
+        .empty-checkout i { font-size: 64px; opacity: 0.2; margin-bottom: 20px; display: block; }
+        .empty-checkout h3 { font-size: 22px; margin-bottom: 10px; color: var(--text-gray); }
+        .empty-checkout p { font-size: 15px; margin-bottom: 28px; }
+
+        .btn-go-shop {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 700;
+            font-size: 15px;
+            padding: 12px 28px;
+            border-radius: 10px;
+            transition: background 0.2s;
+        }
+
+        .btn-go-shop:hover { background: var(--primary-dark); color: #fff; }
+
+        /* ─── Success Screen ─── */
+        .success-screen {
+            max-width: 560px;
+            margin: 60px auto;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .success-circle {
+            width: 96px; height: 96px;
+            border-radius: 50%;
+            background: rgba(34,197,94,0.12);
+            border: 2px solid rgba(34,197,94,0.3);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 28px;
+            font-size: 40px;
+            color: var(--primary);
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to   { transform: scale(1);   opacity: 1; }
+        }
+
+        .success-screen h2 { font-size: 28px; margin-bottom: 12px; }
+        .success-screen p { color: var(--text-gray); font-size: 15px; line-height: 1.7; margin-bottom: 28px; }
+
+        .success-ref {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 20px 24px;
+            margin-bottom: 28px;
+            text-align: left;
+        }
+
+        .success-ref-label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+        .success-ref-num { font-size: 22px; font-weight: 800; color: var(--primary); margin-bottom: 14px; }
+        .success-ref-row { display: flex; gap: 8px; font-size: 13px; color: var(--text-gray); padding: 4px 0; }
+        .success-ref-row i { color: var(--text-muted); width: 16px; margin-top: 2px; flex-shrink: 0; }
+
+        .success-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 12px 22px;
+            border-radius: 10px;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-action.primary { background: var(--primary); color: #fff; }
+        .btn-action.primary:hover { background: var(--primary-dark); color: #fff; }
+        .btn-action.whatsapp { background: #25d366; color: #fff; }
+        .btn-action.whatsapp:hover { background: #1daa54; color: #fff; }
+        .btn-action.outline { background: none; border: 1px solid var(--border-color); color: var(--text-gray); }
+        .btn-action.outline:hover { border-color: var(--primary); color: var(--primary); }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="checkout-nav">
+        <div class="container">
+            <a class="nav-brand" href="index.html">
+                <div class="logo-icon"><i class="fas fa-bolt"></i></div>
+                ЕЛКОС
+            </a>
+            <div class="nav-steps d-none d-sm-flex">
+                <div class="step"><i class="fas fa-cart-shopping"></i> Кошничка</div>
+                <span class="sep">›</span>
+                <div class="step active"><i class="fas fa-box"></i> Порачај</div>
+                <span class="sep">›</span>
+                <div class="step"><i class="fas fa-check-circle"></i> Потврда</div>
+            </div>
+            <a class="btn-back-shop" href="shop-knipex.html">
+                <i class="fas fa-arrow-left"></i> Назад кон продавница
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main -->
+    <div class="checkout-page">
+        <div class="container">
+
+            <!-- Empty state -->
+            <div id="emptyState" style="display:none;" class="empty-checkout">
+                <i class="fas fa-cart-shopping"></i>
+                <h3>Кошничката е празна</h3>
+                <p>Нема производи за нарачка. Додај алати во кошничката прво.</p>
+                <a href="shop-knipex.html" class="btn-go-shop">
+                    <i class="fas fa-arrow-left"></i> Оди во продавница
+                </a>
+            </div>
+
+            <!-- Success screen -->
+            <div id="successScreen" style="display:none;" class="success-screen">
+                <div class="success-circle"><i class="fas fa-check"></i></div>
+                <h2>Нарачката е примена!</h2>
+                <p>Ви благодариме! Ќе ве контактираме наскоро за потврда и детали за достава на вашата адреса.</p>
+                <div class="success-ref" id="successRef"></div>
+                <div class="success-actions">
+                    <a href="tel:+38971562449" class="btn-action primary">
+                        <i class="fas fa-phone"></i> +389 71 562 449
+                    </a>
+                    <a href="https://wa.me/38972240410" class="btn-action whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                    <a href="shop-knipex.html" class="btn-action outline">
+                        <i class="fas fa-store"></i> Продавница
+                    </a>
+                </div>
+            </div>
+
+            <!-- Checkout grid -->
+            <div id="checkoutGrid" class="checkout-grid" style="display:none;">
+
+                <!-- LEFT: Form -->
+                <div class="form-col">
+
+                    <!-- Delivery details -->
+                    <div class="form-card">
+                        <div class="form-card-title">
+                            <i class="fas fa-truck"></i> Детали за достава
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Име и Презиме<span class="req">*</span></label>
+                            <input type="text" class="form-control-dark" id="fFirstName" placeholder="Вашето име и презиме">
+                            <div class="field-error" id="fFirstNameErr">Задолжително поле</div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Адреса за достава<span class="req">*</span></label>
+                                <input type="text" class="form-control-dark" id="fAddress" placeholder="Улица и број">
+                                <div class="field-error" id="fAddressErr">Задолжително поле</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Град<span class="req">*</span></label>
+                                <input type="text" class="form-control-dark" id="fCity" placeholder="Скопје">
+                                <div class="field-error" id="fCityErr">Задолжително поле</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Телефон<span class="req">*</span></label>
+                            <input type="tel" class="form-control-dark" id="fPhone" placeholder="+389 7X XXX XXX">
+                            <div class="field-error" id="fPhoneErr">Задолжително поле</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Е-пошта</label>
+                            <input type="email" class="form-control-dark" id="fEmail" placeholder="your@email.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Напомена</label>
+                            <textarea class="form-control-dark textarea" id="fNote" placeholder="Дополнителни информации за нарачката или доставата..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Payment -->
+                    <div class="form-card">
+                        <div class="form-card-title">
+                            <i class="fas fa-credit-card"></i> Начин на плаќање
+                        </div>
+
+                        <div class="payment-options" id="paymentOptions">
+                            <div>
+                                <label class="payment-option selected" data-value="cod">
+                                    <input type="radio" name="payment" value="cod" checked>
+                                    <div class="payment-radio"></div>
+                                    <div class="payment-label">
+                                        <strong>💵 Готовина при достава</strong>
+                                        <span>Плаќате кеш при преземање на пратката</span>
+                                    </div>
+                                </label>
+                            </div>
+                            
+                            <div>
+                                <label class="payment-option" data-value="card">
+                                    <input type="radio" name="payment" value="card">
+                                    <div class="payment-radio"></div>
+                                    <div class="payment-label">
+                                        <strong>💳 Плаќање со картичка</strong>
+                                        <span>Visa, Mastercard — наплата при достава преку ПОС терминал</span>
+                                    </div>
+                                </label>
+                                <div class="card-details-panel" id="cardDetails">
+                                    <div class="form-group">
+                                        <label class="form-label">Број на картичка<span class="req">*</span></label>
+                                        <div class="card-number-wrapper">
+                                            <input type="text" class="form-control-dark" id="cardNumber"
+                                                placeholder="0000 0000 0000 0000" maxlength="19" inputmode="numeric">
+                                            <span class="card-type-icon" id="cardTypeIcon">💳</span>
+                                        </div>
+                                        <div class="field-error" id="cardNumberErr">Внесете валиден број на картичка</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Име на картичката<span class="req">*</span></label>
+                                        <input type="text" class="form-control-dark" id="cardName"
+                                            placeholder="Ime Prezime" style="text-transform:uppercase;">
+                                        <div class="field-error" id="cardNameErr">Задолжително поле</div>
+                                    </div>
+                                    <div class="card-row">
+                                        <div class="form-group">
+                                            <label class="form-label">Важи до<span class="req">*</span></label>
+                                            <input type="text" class="form-control-dark" id="cardExpiry"
+                                                placeholder="MM/GG" maxlength="5" inputmode="numeric">
+                                            <div class="field-error" id="cardExpiryErr">Невалиден датум</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">CVV<span class="req">*</span></label>
+                                            <input type="text" class="form-control-dark" id="cardCvv"
+                                                placeholder="•••" maxlength="4" inputmode="numeric">
+                                            <div class="field-error" id="cardCvvErr">Невалиден CVV</div>
+                                        </div>
+                                    </div>
+                                    <div class="card-security-note">
+                                        <i class="fas fa-lock"></i>
+                                        Вашите податоци се шифрирани и безбедни
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="payment-option" data-value="bank">
+                                    <input type="radio" name="payment" value="bank">
+                                    <div class="payment-radio"></div>
+                                    <div class="payment-label">
+                                        <strong>🏦 Банкарски трансфер</strong>
+                                        <span>Уплата на сметка пред испорака</span>
+                                    </div>
+                                </label>
+                                <div class="payment-bank-details" id="bankDetails">
+                                    <strong>Детали за уплата:</strong>
+                                    Назив: ЕЛКОС ДООЕЛ<br>
+                                    Банка: Комерцијална банка<br>
+                                    Сметка: 300-XXXXXXXX-XX<br>
+                                    Цел на дознака: Ваш телефон / нарачка
+                                </div>
+                            </div>
+                            <div>
+                                <label class="payment-option" data-value="pickup">
+                                    <input type="radio" name="payment" value="pickup">
+                                    <div class="payment-radio"></div>
+                                    <div class="payment-label">
+                                        <strong>🏪 Лично преземање</strong>
+                                        <span>Подигање од нашиот локал, плаќање на лице место</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT: Order Summary -->
+                <div class="order-summary-col">
+                    <div class="summary-card">
+                        <div class="summary-header">
+                            <span>Преглед на нарачка</span>
+                            <a href="shop-knipex.html">Измени</a>
+                        </div>
+
+                        <div class="summary-items" id="summaryItems"></div>
+
+                        <div class="summary-totals">
+                            <div class="total-row">
+                                <span class="label">Меѓузбир</span>
+                                <span class="value" id="subtotalVal"></span>
+                            </div>
+                            <div class="total-row delivery-row">
+                                <span class="label">
+                                    Достава
+                                    <span class="delivery-badge paid" id="deliveryBadge">+150 МКД</span>
+                                </span>
+                                <span class="value" id="deliveryVal">150 МКД</span>
+                            </div>
+                            <div class="free-threshold-note" id="freeNote"></div>
+                            <div class="free-progress" id="freeProgress">
+                                <div class="free-progress-bar" id="freeBar"></div>
+                            </div>
+                            <div class="total-divider"></div>
+                            <div class="total-row grand">
+                                <span class="label">Вкупно</span>
+                                <span class="value" id="grandTotal"></span>
+                            </div>
+                        </div>
+
+                        <div class="summary-footer">
+                            <button class="btn-place-order" onclick="placeOrder()">
+                                <i class="fas fa-check-circle"></i> Потврди нарачка
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    const DELIVERY_FEE = 150;
+    const FREE_THRESHOLD = 5000;
+
+    // Load cart from localStorage
+    let cart = [];
+    try { cart = JSON.parse(localStorage.getItem('elkos_cart') || '[]'); } catch(e) {}
+
+    function fmt(n) { return n.toLocaleString('mk-MK') + ' МКД'; }
+
+    function init() {
+        if (cart.length === 0) {
+            document.getElementById('emptyState').style.display = '';
+            return;
+        }
+        document.getElementById('checkoutGrid').style.display = '';
+        renderSummary();
+        initPaymentOptions();
+    }
+
+    function renderSummary() {
+        const subtotal = cart.reduce((s, x) => s + x.priceNum * x.qty, 0);
+        const isFree   = subtotal >= FREE_THRESHOLD;
+        const delivery = isFree ? 0 : DELIVERY_FEE;
+        const grand    = subtotal + delivery;
+
+        // Items
+        document.getElementById('summaryItems').innerHTML = cart.map(x => `
+            <div class="summary-item">
+                <div class="summary-item-icon ${x.bgClass}">${x.icon}</div>
+                <div class="summary-item-info">
+                    <div class="summary-item-name">${x.name}</div>
+                    <div class="summary-item-qty">× ${x.qty}</div>
+                </div>
+                <div class="summary-item-price">${fmt(x.priceNum * x.qty)}</div>
+            </div>`).join('');
+
+        // Totals
+        document.getElementById('subtotalVal').textContent = fmt(subtotal);
+
+        if (isFree) {
+            document.getElementById('deliveryVal').textContent = 'Бесплатно';
+            document.getElementById('deliveryVal').classList.add('delivery-value-free');
+            document.getElementById('deliveryBadge').textContent = 'БЕСПЛАТНО';
+            document.getElementById('deliveryBadge').className = 'delivery-badge free';
+            document.getElementById('freeNote').style.display = 'none';
+            document.getElementById('freeProgress').style.display = 'none';
+        } else {
+            document.getElementById('deliveryVal').textContent = fmt(DELIVERY_FEE);
+            document.getElementById('deliveryVal').classList.remove('delivery-value-free');
+            document.getElementById('deliveryBadge').textContent = '+' + fmt(DELIVERY_FEE);
+            document.getElementById('deliveryBadge').className = 'delivery-badge paid';
+            const remaining = FREE_THRESHOLD - subtotal;
+            const pct = Math.min(100, (subtotal / FREE_THRESHOLD) * 100);
+            document.getElementById('freeNote').textContent =
+                `Уште ${fmt(remaining)} до бесплатна достава`;
+            document.getElementById('freeNote').classList.add('visible');
+            document.getElementById('freeProgress').classList.add('visible');
+            document.getElementById('freeBar').style.width = pct + '%';
+        }
+
+        document.getElementById('grandTotal').textContent = fmt(grand);
+    }
+
+    function initPaymentOptions() {
+        document.querySelectorAll('.payment-option').forEach(opt => {
+            opt.addEventListener('click', () => {
+                document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
+                opt.classList.add('selected');
+                opt.querySelector('input[type="radio"]').checked = true;
+                const val = opt.dataset.value;
+                document.getElementById('bankDetails').classList.toggle('visible', val === 'bank');
+                document.getElementById('cardDetails').classList.toggle('visible', val === 'card');
+                updateDeliveryForPickup(val === 'pickup');
+            });
+        });
+
+        // Card number formatting & type detection
+        document.getElementById('cardNumber').addEventListener('input', function () {
+            let v = this.value.replace(/\D/g, '').slice(0, 16);
+            this.value = v.replace(/(.{4})/g, '$1 ').trim();
+            const icon = document.getElementById('cardTypeIcon');
+            if (/^4/.test(v))       icon.textContent = '💳 Visa';
+            else if (/^5[1-5]/.test(v) || /^2[2-7]/.test(v)) icon.textContent = '💳 MC';
+            else                    icon.textContent = '💳';
+        });
+
+        // Expiry formatting MM/GG
+        document.getElementById('cardExpiry').addEventListener('input', function () {
+            let v = this.value.replace(/\D/g, '').slice(0, 4);
+            if (v.length >= 3) v = v.slice(0, 2) + '/' + v.slice(2);
+            this.value = v;
+        });
+
+        // CVV — digits only
+        document.getElementById('cardCvv').addEventListener('input', function () {
+            this.value = this.value.replace(/\D/g, '').slice(0, 4);
+        });
+    }
+
+    function validateCard() {
+        const payment = document.querySelector('input[name="payment"]:checked').value;
+        if (payment !== 'card') return true;
+        let ok = true;
+
+        const num = document.getElementById('cardNumber').value.replace(/\s/g, '');
+        const numErr = document.getElementById('cardNumberErr');
+        const numEl  = document.getElementById('cardNumber');
+        if (num.length < 13) { numEl.classList.add('error'); numErr.classList.add('visible'); ok = false; }
+        else { numEl.classList.remove('error'); numErr.classList.remove('visible'); }
+
+        const name = document.getElementById('cardName').value.trim();
+        const nameErr = document.getElementById('cardNameErr');
+        const nameEl  = document.getElementById('cardName');
+        if (!name) { nameEl.classList.add('error'); nameErr.classList.add('visible'); ok = false; }
+        else { nameEl.classList.remove('error'); nameErr.classList.remove('visible'); }
+
+        const exp = document.getElementById('cardExpiry').value;
+        const expErr = document.getElementById('cardExpiryErr');
+        const expEl  = document.getElementById('cardExpiry');
+        const expValid = /^(0[1-9]|1[0-2])\/\d{2}$/.test(exp);
+        if (!expValid) { expEl.classList.add('error'); expErr.classList.add('visible'); ok = false; }
+        else { expEl.classList.remove('error'); expErr.classList.remove('visible'); }
+
+        const cvv = document.getElementById('cardCvv').value;
+        const cvvErr = document.getElementById('cardCvvErr');
+        const cvvEl  = document.getElementById('cardCvv');
+        if (cvv.length < 3) { cvvEl.classList.add('error'); cvvErr.classList.add('visible'); ok = false; }
+        else { cvvEl.classList.remove('error'); cvvErr.classList.remove('visible'); }
+
+        return ok;
+    }
+
+    function updateDeliveryForPickup(isPickup) {
+        const subtotal = cart.reduce((s, x) => s + x.priceNum * x.qty, 0);
+        if (isPickup) {
+            document.getElementById('deliveryVal').textContent = 'Бесплатно';
+            document.getElementById('deliveryVal').classList.add('delivery-value-free');
+            document.getElementById('deliveryBadge').textContent = 'БЕСПЛАТНО';
+            document.getElementById('deliveryBadge').className = 'delivery-badge free';
+            document.getElementById('freeNote').style.display = 'none';
+            document.getElementById('freeProgress').classList.remove('visible');
+            document.getElementById('grandTotal').textContent = fmt(subtotal);
+        } else {
+            renderSummary();
+            // Re-check bank details visibility
+            const isBankSelected = document.querySelector('input[name="payment"]:checked').value === 'bank';
+            document.getElementById('bankDetails').classList.toggle('visible', isBankSelected);
+        }
+    }
+
+    function getDelivery() {
+        const payment = document.querySelector('input[name="payment"]:checked').value;
+        if (payment === 'pickup') return 0;
+        const subtotal = cart.reduce((s, x) => s + x.priceNum * x.qty, 0);
+        return subtotal >= FREE_THRESHOLD ? 0 : DELIVERY_FEE;
+    }
+
+    function placeOrder() {
+        const required = [
+            ['fFirstName', 'fFirstNameErr'],
+            ['fAddress',   'fAddressErr'],
+            ['fCity',      'fCityErr'],
+            ['fPhone',     'fPhoneErr'],
+        ];
+        let valid = true;
+        required.forEach(([fid, eid]) => {
+            const el  = document.getElementById(fid);
+            const err = document.getElementById(eid);
+            if (!el.value.trim()) {
+                el.classList.add('error');
+                err.classList.add('visible');
+                valid = false;
+            } else {
+                el.classList.remove('error');
+                err.classList.remove('visible');
+            }
+        });
+        if (!validateCard()) valid = false;
+        if (!valid) {
+            document.getElementById('fFirstName').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+        }
+
+        const paymentLabels = { cod: 'Готовина при достава', bank: 'Банкарски трансфер', card: 'Плаќање со картичка', pickup: 'Лично преземање' };
+        const payment  = document.querySelector('input[name="payment"]:checked').value;
+        const firstName = document.getElementById('fFirstName').value.trim();
+        const lastName  = '';
+        const address   = document.getElementById('fAddress').value.trim();
+        const city      = document.getElementById('fCity').value.trim();
+        const zip       = document.getElementById('fZip').value.trim();
+        const phone     = document.getElementById('fPhone').value.trim();
+        const email     = document.getElementById('fEmail').value.trim();
+        const note      = document.getElementById('fNote').value.trim();
+        const subtotal  = cart.reduce((s, x) => s + x.priceNum * x.qty, 0);
+        const delivery  = getDelivery();
+        const grand     = subtotal + delivery;
+        const ref       = 'EL-' + Date.now().toString().slice(-6);
+
+        // Build success details
+        const rows = [
+            ['fa-hashtag',    `Реф. број: ${ref}`],
+            ['fa-user',       firstName],
+            ['fa-location-dot', `${address}, ${zip ? zip + ' ' : ''}${city}`],
+            ['fa-phone',      phone],
+            ...(email ? [['fa-envelope', email]] : []),
+            ['fa-credit-card', paymentLabels[payment]],
+            ['fa-truck',      delivery === 0 ? 'Бесплатна достава' : `Достава: ${fmt(delivery)}`],
+            ['fa-receipt',    `Вкупно: ${fmt(grand)}`],
+            ...(note ? [['fa-note-sticky', note]] : []),
+        ];
+
+        document.getElementById('successRef').innerHTML = `
+            <div class="success-ref-label">Детали на нарачката</div>
+            <div class="success-ref-num">${ref}</div>
+            ${rows.map(([icon, text]) => `
+                <div class="success-ref-row">
+                    <i class="fas ${icon}"></i>
+                    <span>${text}</span>
+                </div>`).join('')}`;
+
+        localStorage.removeItem('elkos_cart');
+        cart = [];
+
+        document.getElementById('checkoutGrid').style.display = 'none';
+        document.getElementById('successScreen').style.display = '';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Update nav steps
+        document.querySelectorAll('.nav-steps .step').forEach((s, i) => {
+            s.classList.toggle('active', i === 2);
+        });
+    }
+
+    init();
+    </script>
+</body>
+</html>
