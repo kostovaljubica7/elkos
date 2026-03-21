@@ -1437,6 +1437,8 @@
 
     const grid = document.getElementById('productGrid');
     grid.innerHTML = products.map(buildCard).join('');
+    updateBadge();
+    renderCartItems();
 
     // ─── Filter & Search ───
     let activeCat = 'all';
