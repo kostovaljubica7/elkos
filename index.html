@@ -2326,11 +2326,14 @@
                 setupLanguage(lang);
             }
 
-            // Check URL for language parameter (e.g., /en)
+            // Check URL for language parameter (e.g., /en, /mk)
             function getLanguageFromURL() {
                 const path = window.location.pathname;
                 if (path === '/en' || path === '/en/') {
                     return 'en';
+                }
+                if (path === '/mk' || path === '/mk/') {
+                    return 'mk';
                 }
                 return null;
             }
