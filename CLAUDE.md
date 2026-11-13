@@ -28,7 +28,6 @@ elkos/
 ├── en/index.html           # English site (static text, lang="en")
 ├── business-card.html
 ├── checkout.html
-├── shop.html               # currently a redirect; _shop.html is WIP
 ├── css/  img/              # assets
 └── mgmt/                   # operational scripts (run from laptop)
     ├── push.sh             # git add/commit/push
