@@ -23,7 +23,7 @@ ssh -i ~/.ssh/keys/elkoskey root@159.223.216.71
 
 ```
 elkos/
-├── index.html              # language chooser (/): links to /mk/ and /en/, no auto-redirect
+├── index.html              # homepage: copy of mk/index.html (Macedonian, canonical /mk/)
 ├── mk/index.html           # Macedonian site (static text, lang="mk")
 ├── en/index.html           # English site (static text, lang="en")
 ├── business-card.html
@@ -83,8 +83,10 @@ internet ----443--->|  elkos-nginx (docker container)
 
 Each language is its own real page, so search engines index both:
 
-1. **`/`** is a neutral chooser (`index.html`) with links to `/mk/` and `/en/`. There is no automatic IP or browser-language redirect (it would also redirect Googlebot).
+1. **`/`** serves the Macedonian page directly (`index.html` is a copy of `mk/index.html`, canonical `/mk/`). There is no redirect and no chooser. English visitors use the EN link in the top bar, which goes to `/en/`.
 2. **`/mk/index.html`** and **`/en/index.html`** have the text pre-rendered in HTML, their own title/description/canonical, and `hreflang` alternates. The language switcher is a plain link.
+
+When you change `mk/index.html`, copy it to `index.html` as well.
 
 The two pages are generated from the same content, but there is no build script in the repo. **Edit both files** when changing text, and keep `translations`-style strings in sync. Client-side JS in each page still applies the dictionary, so the in-page strings (such as "Копирано!") stay in that page's language.
 
