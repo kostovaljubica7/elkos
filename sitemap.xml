@@ -73,4 +73,58 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://elkos.mk/en/industrial-electrical-installations.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://elkos.mk/mk/industriski-elektroinstalacii.html"/>
   </url>
+  <url>
+    <loc>https://elkos.mk/mk/izvedba-elektroinstalacii.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="mk" href="https://elkos.mk/mk/izvedba-elektroinstalacii.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://elkos.mk/en/electrical-installation.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://elkos.mk/mk/izvedba-elektroinstalacii.html"/>
+  </url>
+  <url>
+    <loc>https://elkos.mk/en/electrical-installation.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="mk" href="https://elkos.mk/mk/izvedba-elektroinstalacii.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://elkos.mk/en/electrical-installation.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://elkos.mk/mk/izvedba-elektroinstalacii.html"/>
+  </url>
+  <url>
+    <loc>https://elkos.mk/mk/trgovija-elektromaterijali.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="mk" href="https://elkos.mk/mk/trgovija-elektromaterijali.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://elkos.mk/en/electrical-materials.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://elkos.mk/mk/trgovija-elektromaterijali.html"/>
+  </url>
+  <url>
+    <loc>https://elkos.mk/en/electrical-materials.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="mk" href="https://elkos.mk/mk/trgovija-elektromaterijali.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://elkos.mk/en/electrical-materials.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://elkos.mk/mk/trgovija-elektromaterijali.html"/>
+  </url>
+  <url>
+    <loc>https://elkos.mk/mk/proektiranje-elektroinstalacii.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="mk" href="https://elkos.mk/mk/proektiranje-elektroinstalacii.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://elkos.mk/en/electrical-installation-design.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://elkos.mk/mk/proektiranje-elektroinstalacii.html"/>
+  </url>
+  <url>
+    <loc>https://elkos.mk/en/electrical-installation-design.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="mk" href="https://elkos.mk/mk/proektiranje-elektroinstalacii.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://elkos.mk/en/electrical-installation-design.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://elkos.mk/mk/proektiranje-elektroinstalacii.html"/>
+  </url>
 </urlset>
