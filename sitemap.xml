@@ -3,7 +3,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://elkos.mk/mk/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="mk" href="https://elkos.mk/mk/"/>
@@ -12,11 +12,65 @@
   </url>
   <url>
     <loc>https://elkos.mk/en/</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="mk" href="https://elkos.mk/mk/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://elkos.mk/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://elkos.mk/"/>
+  </url>
+  <url>
+    <loc>https://elkos.mk/mk/stanbeni-elektroinstalacii.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="mk" href="https://elkos.mk/mk/stanbeni-elektroinstalacii.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://elkos.mk/en/residential-electrical-installations.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://elkos.mk/mk/stanbeni-elektroinstalacii.html"/>
+  </url>
+  <url>
+    <loc>https://elkos.mk/en/residential-electrical-installations.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="mk" href="https://elkos.mk/mk/stanbeni-elektroinstalacii.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://elkos.mk/en/residential-electrical-installations.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://elkos.mk/mk/stanbeni-elektroinstalacii.html"/>
+  </url>
+  <url>
+    <loc>https://elkos.mk/mk/delovni-elektroinstalacii.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="mk" href="https://elkos.mk/mk/delovni-elektroinstalacii.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://elkos.mk/en/commercial-electrical-installations.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://elkos.mk/mk/delovni-elektroinstalacii.html"/>
+  </url>
+  <url>
+    <loc>https://elkos.mk/en/commercial-electrical-installations.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="mk" href="https://elkos.mk/mk/delovni-elektroinstalacii.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://elkos.mk/en/commercial-electrical-installations.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://elkos.mk/mk/delovni-elektroinstalacii.html"/>
+  </url>
+  <url>
+    <loc>https://elkos.mk/mk/industriski-elektroinstalacii.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="mk" href="https://elkos.mk/mk/industriski-elektroinstalacii.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://elkos.mk/en/industrial-electrical-installations.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://elkos.mk/mk/industriski-elektroinstalacii.html"/>
+  </url>
+  <url>
+    <loc>https://elkos.mk/en/industrial-electrical-installations.html</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="mk" href="https://elkos.mk/mk/industriski-elektroinstalacii.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://elkos.mk/en/industrial-electrical-installations.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://elkos.mk/mk/industriski-elektroinstalacii.html"/>
   </url>
 </urlset>
