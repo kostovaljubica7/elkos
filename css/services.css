@@ -56,9 +56,24 @@ h3 { margin: 0 0 10px; font-size: 20px; }
 section { margin-top: 42px; }
 ol, ul { padding-left: 22px; }
 .faq-item + .faq-item { margin-top: 14px; }
-.contact-panel { margin-top: 48px; padding: 26px; border-radius: 14px; background: var(--service-card); }
-.contact-panel p { color: var(--service-muted); }
+.contact-section { margin: 70px calc((min(1080px, 100vw - 36px) - 100vw) / 2) 0; padding: 72px max(18px, calc((100vw - 1080px) / 2)); background: linear-gradient(180deg, var(--service-bg) 0%, #0a0d11 100%); }
+.contact-heading { margin-bottom: 38px; text-align: center; }
+.contact-heading .eyebrow { margin-bottom: 10px; }
+.contact-heading h2 { margin: 0; }
+.contact-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.contact-card { min-height: 220px; padding: 28px 18px; border: 1px solid #2d3748; border-radius: 14px; background: var(--service-card); text-align: center; }
+.contact-icon { display: flex; width: 56px; height: 56px; align-items: center; justify-content: center; margin: 0 auto 18px; border: 1px solid var(--service-green); border-radius: 50%; background: rgba(34, 197, 94, .1); color: var(--service-green); }
+.contact-icon svg { width: 23px; height: 23px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
+.contact-card h3 { margin-bottom: 8px; font-size: 17px; }
+.contact-card p, .contact-card address { margin: 0; color: var(--service-muted); font-size: 15px; font-style: normal; }
+.contact-card a { color: inherit; }
+.contact-card a:hover { color: var(--service-green); }
+.contact-card .contact-value { color: #fff; }
 .site-footer { padding: 22px 0; border-top: 1px solid #2d3748; color: var(--service-muted); font-size: 14px; }
+
+@media (max-width: 900px) {
+    .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 
 @media (max-width: 600px) {
     .top-bar-inner { min-height: 38px; }
@@ -67,4 +82,7 @@ ol, ul { padding-left: 22px; }
     .nav-links { gap: 12px; }
     .nav-quote { padding: 6px 9px; }
     .lead { font-size: 17px; }
+    .contact-section { margin-top: 48px; padding: 52px 18px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 14px; }
+    .contact-card { min-height: 0; padding: 22px 16px; }
 }
