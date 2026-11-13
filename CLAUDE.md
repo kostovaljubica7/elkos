@@ -43,11 +43,11 @@ elkos/
 
 **Commit, push and release in one step (use this):**
 ```bash
-bash mgmt/release.sh "short description of what changed"
+bash mgmt/release.sh
 ```
-It commits everything, pushes to GitHub, deploys to the live server and checks the live URLs. It stops at the first failure, so nothing is deployed unless it was pushed.
+It commits everything, pushes to GitHub, deploys to the live server and checks the live URLs. It stops at the first failure, so nothing is deployed unless it was pushed. The commit message is built from the changed file names. Pass a message only if the user asks for one: `bash mgmt/release.sh "message"`.
 
-When the user says "commit push and release" (or similar), run that command with a one-line message describing the change.
+When the user says "commit push and release" (or similar), run `bash mgmt/release.sh` with no message.
 
 `mgmt/push.sh` and `mgmt/deploy.sh` are the older separate steps; `release.sh` does both.
 
