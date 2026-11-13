@@ -4,6 +4,8 @@
 rsync -av \
   --exclude='.git' \
   --exclude='.claude' \
+  --exclude='.envrc' \
+  --exclude='.gitignore' \
   --exclude='.vscode' \
   --exclude='mgmt' \
   --exclude='CLAUDE.md' \

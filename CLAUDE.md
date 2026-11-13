@@ -30,8 +30,9 @@ elkos/
 ├── checkout.html
 ├── css/  img/              # assets
 └── mgmt/                   # operational scripts (run from laptop)
-    ├── push.sh             # git add/commit/push
-    ├── deploy.sh           # rsync repo to server
+    ├── release.sh          # commit + push + deploy + check (use this)
+    ├── push.sh             # older: git add/commit/push
+    ├── deploy.sh           # older: rsync repo to server
     ├── ssl-setup.sh        # one-time: install cert auto-renewal
     └── ssl-renew.sh        # manual cert renewal (rarely needed)
 ```
@@ -40,15 +41,15 @@ elkos/
 
 ## Common workflows
 
-**Push code to GitHub:**
+**Commit, push and release in one step (use this):**
 ```bash
-bash mgmt/push.sh
+bash mgmt/release.sh "short description of what changed"
 ```
+It commits everything, pushes to GitHub, deploys to the live server and checks the live URLs. It stops at the first failure, so nothing is deployed unless it was pushed.
 
-**Deploy to server** (rsync to `/var/www/elkos/`):
-```bash
-bash mgmt/deploy.sh
-```
+When the user says "commit push and release" (or similar), run that command with a one-line message describing the change.
+
+`mgmt/push.sh` and `mgmt/deploy.sh` are the older separate steps; `release.sh` does both.
 
 **Manual SSL renewal** (auto-renewal already runs; only use if forced):
 ```bash
