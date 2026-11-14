@@ -395,7 +395,8 @@
             border-radius: 16px;
             width: 100%;
             height: auto;
-            object-fit: cover;
+            object-fit: contain;
+            background: #fff;
         }
 
         .experience-badge {
@@ -463,28 +464,301 @@
             margin: 0;
         }
 
-        /* Stats Section */
-        .stats-section {
-            padding: 60px 0;
+        /* Interactive project hotspots */
+        .projects-section {
+            padding: 70px 0;
             border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
         }
 
-        .stat-item {
+        .projects-heading {
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .projects-hint {
+            color: var(--text-gray);
+            margin: 0 0 28px;
             text-align: center;
         }
 
-        .stat-number {
-            font-size: 56px;
-            font-weight: 700;
-            color: var(--primary);
-            line-height: 1;
+        .project-slider {
+            max-width: 1080px;
+            margin: 0 auto;
         }
 
-        .stat-label {
+        .project-slide {
+            margin: 0;
+        }
+
+        .project-slide[hidden] {
+            display: none;
+        }
+
+        .project-canvas {
+            position: relative;
+            isolation: isolate;
+            width: 100%;
+            max-width: 760px;
+            margin: 0 auto;
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            background: #101820;
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+        }
+
+        .project-canvas--wide {
+            max-width: 1080px;
+        }
+
+        .project-image {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 18px;
+        }
+
+        .project-hotspot {
+            position: absolute;
+            z-index: 1;
+            left: var(--hotspot-x);
+            top: var(--hotspot-y);
+        }
+
+        .project-hotspot summary {
+            position: relative;
+            display: grid;
+            width: 40px;
+            height: 40px;
+            place-items: center;
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.2), 0 4px 18px rgba(0, 0, 0, 0.35);
+            cursor: pointer;
+            list-style: none;
+            transform: translate(-50%, -50%);
+        }
+
+        .project-hotspot summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .project-hotspot summary::before {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #fff;
+            content: "";
+        }
+
+        .project-hotspot summary::after {
+            position: absolute;
+            inset: -8px;
+            border: 1px solid rgba(34, 197, 94, 0.8);
+            border-radius: 50%;
+            content: "";
+            animation: hotspot-pulse 2.2s ease-out infinite;
+        }
+
+        .project-hotspot summary:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 5px;
+        }
+
+        .hotspot-detail {
+            position: absolute;
+            top: 50%;
+            left: calc(100% + 16px);
+            width: 250px;
+            max-width: calc(100vw - 72px);
+            padding: 16px 18px;
+            border: 1px solid rgba(34, 197, 94, 0.5);
+            border-radius: 12px;
+            background: rgba(15, 20, 25, 0.96);
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-50%) translateX(-6px);
+            transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+            visibility: hidden;
+        }
+
+        .project-hotspot--right .hotspot-detail {
+            right: calc(100% + 16px);
+            left: auto;
+            transform: translateY(-50%) translateX(6px);
+        }
+
+        .project-hotspot:hover,
+        .project-hotspot:focus-within,
+        .project-hotspot[open] {
+            z-index: 3;
+        }
+
+        .project-hotspot:hover .hotspot-detail,
+        .project-hotspot:focus-within .hotspot-detail,
+        .project-hotspot[open] .hotspot-detail {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(-50%);
+            visibility: visible;
+        }
+
+        .hotspot-detail h3 {
+            margin: 0 0 5px;
+            color: var(--text-white);
+            font-size: 16px;
+        }
+
+        .hotspot-detail p {
+            margin: 0;
             color: var(--text-gray);
-            font-size: 15px;
-            margin-top: 10px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .project-caption {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 16px;
+            max-width: 760px;
+            margin: 16px auto 0;
+        }
+
+        .project-caption h3 {
+            margin: 0;
+            color: var(--text-white);
+            font-size: 19px;
+        }
+
+        .project-caption p {
+            margin: 4px 0 0;
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        .project-count {
+            flex: 0 0 auto;
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+        }
+
+        .project-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 22px;
+        }
+
+        .project-arrow {
+            display: grid;
+            width: 42px;
+            height: 42px;
+            place-items: center;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            background: var(--bg-card);
+            color: var(--text-white);
+            font-size: 22px;
+            line-height: 1;
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .project-arrow:hover,
+        .project-arrow:focus-visible {
+            border-color: var(--primary);
+            background: var(--bg-card-hover);
+        }
+
+        .project-dots {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .project-dot {
+            width: 10px;
+            height: 10px;
+            padding: 0;
+            border: 0;
+            border-radius: 50%;
+            background: #6b7280;
+            transition: width 0.2s ease, background 0.2s ease;
+        }
+
+        .project-dot[aria-current="true"] {
+            width: 28px;
+            border-radius: 99px;
+            background: var(--primary);
+        }
+
+        .project-arrow:focus-visible,
+        .project-dot:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 4px;
+        }
+
+        .project-status {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        @keyframes hotspot-pulse {
+            0% { opacity: 0.8; transform: scale(0.85); }
+            100% { opacity: 0; transform: scale(1.5); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .project-hotspot summary::after {
+                animation: none;
+            }
+
+            .hotspot-detail {
+                transition: none;
+            }
+        }
+
+        @media (max-width: 575px) {
+            .hotspot-detail {
+                width: 180px;
+                max-width: calc(100vw - 64px);
+                padding: 12px 14px;
+            }
+
+            .project-hotspot:not(.project-hotspot--right) .hotspot-detail {
+                right: auto;
+                left: 0;
+            }
+
+            .project-hotspot--right .hotspot-detail {
+                right: 0;
+                left: auto;
+            }
+
+            .project-caption {
+                align-items: flex-start;
+            }
+
+            .project-caption h3 {
+                font-size: 16px;
+            }
+
+            .project-controls {
+                gap: 18px;
+            }
         }
 
         /* Why Choose Us Section */
@@ -865,10 +1139,6 @@
                 font-size: 32px;
             }
             
-            .stat-number {
-                font-size: 42px;
-            }
-
             .experience-badge {
                 right: 20px;
                 bottom: -10px;
@@ -942,14 +1212,6 @@
                 letter-spacing: 1.5px;
             }
 
-            .stat-number {
-                font-size: 32px;
-            }
-
-            .stat-label {
-                font-size: 13px;
-            }
-
             .services-section,
             .about-section,
             .why-section,
@@ -958,8 +1220,8 @@
                 padding: 50px 0;
             }
 
-            .stats-section {
-                padding: 40px 0;
+            .projects-section {
+                padding: 50px 0;
             }
 
             .hero-section {
@@ -1208,10 +1470,6 @@
 
             .section-title {
                 font-size: 22px;
-            }
-
-            .stat-number {
-                font-size: 24px;
             }
 
             .testimonial-card {
@@ -1708,34 +1966,88 @@
 </div>
 </div>
 </section>
-<!-- Stats Section -->
-<section class="stats-section">
+<!-- Project Gallery -->
+<section class="projects-section" aria-labelledby="projects-title">
 <div class="container">
-<div class="row text-center">
-<div class="col-md-3 col-6 mb-4 mb-md-0 animate-on-scroll slide-up animate-delay-1">
-<div class="stat-item">
-<div class="stat-number">154+</div>
-<div class="stat-label" data-key="stat-projects">Завршени проекти</div>
+<div class="projects-heading animate-on-scroll slide-up">
+<div class="section-label">НАШИ ПРОЕКТИ</div>
+<h2 class="section-title" id="projects-title">Галерија од електроинсталациски проекти</h2>
 </div>
+<p class="projects-hint">Изберете фотографија, па посочете или изберете точка за да видите детали.</p>
+<div class="project-slider animate-on-scroll slide-up" data-project-slider role="region" aria-label="Галерија од проекти">
+<div class="project-slides" aria-live="polite">
+<figure class="project-slide">
+<div class="project-canvas">
+<img class="project-image" src="/img/custom/project-installation-team.jpeg" alt="Електричари монтираат инсталација на висина во индустриски објект" width="768" height="768" fetchpriority="high" decoding="async"/>
+<details class="project-hotspot" style="--hotspot-x: 26%; --hotspot-y: 44%;">
+<summary aria-label="Монтажни работи на висина — прикажи детали"></summary>
+<div class="hotspot-detail"><h3>Монтажни работи на висина</h3><p>Екипа работи на инсталацијата со подвижна платформа.</p></div>
+</details>
+<details class="project-hotspot project-hotspot--right" style="--hotspot-x: 73%; --hotspot-y: 36%;">
+<summary aria-label="Работа во индустриски објект — прикажи детали"></summary>
+<div class="hotspot-detail"><h3>Индустриски објект</h3><p>Монтажни работи во внатрешноста на објектот.</p></div>
+</details>
 </div>
-<div class="col-md-3 col-6 mb-4 mb-md-0 animate-on-scroll slide-up animate-delay-2">
-<div class="stat-item">
-<div class="stat-number">52+</div>
-<div class="stat-label" data-key="stat-clients">Задоволни клиенти</div>
+<figcaption class="project-caption"><div><h3>Монтажни работи во индустриски објект</h3><p>Работа на висина во индустриски објект.</p></div><span class="project-count">01 / 04</span></figcaption>
+</figure>
+<figure class="project-slide" hidden>
+<div class="project-canvas">
+<img class="project-image" src="/img/custom/project-distribution-boards.jpeg" alt="Четири разводни електрични табли со заштитна опрема и поврзани проводници" width="768" height="768" loading="lazy" decoding="async"/>
+<details class="project-hotspot" style="--hotspot-x: 25%; --hotspot-y: 23%;">
+<summary aria-label="Заштитна опрема — прикажи детали"></summary>
+<div class="hotspot-detail"><h3>Заштитна опрема</h3><p>Автоматски осигурувачи и компоненти во разводната табла.</p></div>
+</details>
+<details class="project-hotspot project-hotspot--right" style="--hotspot-x: 70%; --hotspot-y: 30%;">
+<summary aria-label="Поврзани проводници — прикажи детали"></summary>
+<div class="hotspot-detail"><h3>Поврзани проводници</h3><p>Проводници организирани и поврзани во таблата.</p></div>
+</details>
+<details class="project-hotspot" style="--hotspot-x: 29%; --hotspot-y: 72%;">
+<summary aria-label="Разводна табла — прикажи детали"></summary>
+<div class="hotspot-detail"><h3>Разводна табла</h3><p>Опрема за распределба и заштита на електричните кола.</p></div>
+</details>
 </div>
+<figcaption class="project-caption"><div><h3>Разводни електрични табли</h3><p>Пример за табла со заштитна опрема и организирани проводници.</p></div><span class="project-count">02 / 04</span></figcaption>
+</figure>
+<figure class="project-slide" hidden>
+<div class="project-canvas project-canvas--wide">
+<img class="project-image" src="/img/custom/project-industrial-hall.jpeg" alt="Внатрешност на индустриски објект" width="1024" height="768" loading="lazy" decoding="async"/>
+<details class="project-hotspot project-hotspot--right" style="--hotspot-x: 75%; --hotspot-y: 58%;">
+<summary aria-label="Индустриски простор — прикажи детали"></summary>
+<div class="hotspot-detail"><h3>Индустриски објект</h3><p>Поглед кон внатрешноста на објектот.</p></div>
+</details>
 </div>
-<div class="col-md-3 col-6 animate-on-scroll slide-up animate-delay-3">
-<div class="stat-item">
-<div class="stat-number">10</div>
-<div class="stat-label" data-key="stat-employees">Вработени</div>
+<figcaption class="project-caption"><div><h3>Индустриски објект</h3><p>Поглед од внатрешноста на објектот.</p></div><span class="project-count">03 / 04</span></figcaption>
+</figure>
+<figure class="project-slide" hidden>
+<div class="project-canvas">
+<img class="project-image" src="/img/custom/project-cable-tray.jpeg" alt="Метален кабелски носач и потпорна конзола под таван" width="768" height="768" loading="lazy" decoding="async"/>
+<details class="project-hotspot" style="--hotspot-x: 46%; --hotspot-y: 38%;">
+<summary aria-label="Кабелски носач — прикажи детали"></summary>
+<div class="hotspot-detail"><h3>Кабелски носач</h3><p>Метална конструкција за организирано водење на кабли.</p></div>
+</details>
+<details class="project-hotspot project-hotspot--right" style="--hotspot-x: 49%; --hotspot-y: 61%;">
+<summary aria-label="Потпорен носач — прикажи детали"></summary>
+<div class="hotspot-detail"><h3>Потпорен носач</h3><p>Конзола што ја држи кабелската скара под таванот.</p></div>
+</details>
+<details class="project-hotspot" style="--hotspot-x: 76%; --hotspot-y: 24%;">
+<summary aria-label="Монтажа под таван — прикажи детали"></summary>
+<div class="hotspot-detail"><h3>Монтажа под таван</h3><p>Кабелската скара е поставена на носачи под таванот.</p></div>
+</details>
 </div>
+<figcaption class="project-caption"><div><h3>Носачи за кабли</h3><p>Детал од носач за кабелски развод.</p></div><span class="project-count">04 / 04</span></figcaption>
+</figure>
 </div>
-<div class="col-md-3 col-6 animate-on-scroll slide-up animate-delay-4">
-<div class="stat-item">
-<div class="stat-number">80+</div>
-<div class="stat-label" data-key="stat-systems">Контролирани системи</div>
+<div class="project-controls">
+<button class="project-arrow" type="button" data-project-prev aria-label="Претходна фотографија">‹</button>
+<div class="project-dots" role="group" aria-label="Изберете фотографија">
+<button class="project-dot" type="button" data-project-index="0" aria-label="Фотографија 1" aria-current="true"></button>
+<button class="project-dot" type="button" data-project-index="1" aria-label="Фотографија 2" aria-current="false"></button>
+<button class="project-dot" type="button" data-project-index="2" aria-label="Фотографија 3" aria-current="false"></button>
+<button class="project-dot" type="button" data-project-index="3" aria-label="Фотографија 4" aria-current="false"></button>
 </div>
+<button class="project-arrow" type="button" data-project-next aria-label="Следна фотографија">›</button>
 </div>
+<p class="project-status" data-project-status aria-live="polite">Фотографија 1 од 4</p>
 </div>
 </div>
 </section>
@@ -2066,49 +2378,6 @@
             
             animatedElements.forEach(el => observer.observe(el));
 
-            // Counter Animation
-            const counterElements = document.querySelectorAll('.stat-number');
-            let counterStarted = false;
-
-            const countUp = (element, target, suffix = '') => {
-                let current = 0;
-                const increment = target / 60;
-                const duration = 2000;
-                const stepTime = duration / 60;
-
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        element.textContent = target + suffix;
-                        clearInterval(timer);
-                    } else {
-                        element.textContent = Math.floor(current) + suffix;
-                    }
-                }, stepTime);
-            };
-
-            const statsObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !counterStarted) {
-                        counterStarted = true;
-                        counterElements.forEach(el => {
-                            const text = el.textContent;
-                            const hasPlus = text.includes('+');
-                            const number = parseInt(text.replace(/\D/g, ''));
-                            el.textContent = '0';
-                            countUp(el, number, hasPlus ? '+' : '');
-                        });
-                    }
-                });
-            }, {
-                threshold: 0.3
-            });
-
-            const statsSection = document.querySelector('.stats-section');
-            if (statsSection) {
-                statsObserver.observe(statsSection);
-            }
-
             // Testimonials Navigation
             const track = document.querySelector('.testimonials-track');
             const prevBtn = document.querySelector('.testimonials-nav.prev');
@@ -2221,11 +2490,6 @@
                 "awards-desc": { "mk": "Награди за квалитет", "en": "Awards for quality" },
                 "expert-team": { "mk": "Стручен тим", "en": "Expert team" },
                 "expert-team-desc": { "mk": "Посветени професионалци", "en": "Dedicated professionals" },
-                // Stats
-                "stat-projects": { "mk": "Завршени проекти", "en": "Completed projects" },
-                "stat-clients": { "mk": "Задоволни клиенти", "en": "Satisfied clients" },
-                "stat-employees": { "mk": "Вработени", "en": "Employees" },
-                "stat-systems": { "mk": "Контролирани системи", "en": "Monitored systems" },
                 // Why Us
                 "why-label": { "mk": "ЗОШТО НИЕ", "en": "WHY US" },
                 "why-title": {
@@ -2350,6 +2614,68 @@ setupLanguage('mk');
                 });
             });
         });
+    </script>
+    <script>
+        (() => {
+            const slider = document.querySelector('[data-project-slider]');
+            if (!slider) return;
+
+            const slides = Array.from(slider.querySelectorAll('.project-slide'));
+            const dots = Array.from(slider.querySelectorAll('.project-dot'));
+            const status = slider.querySelector('[data-project-status]');
+            const language = document.documentElement.lang;
+            let activeIndex = 0;
+
+            const showSlide = (nextIndex) => {
+                activeIndex = (nextIndex + slides.length) % slides.length;
+                slides.forEach((slide, index) => {
+                    slide.hidden = index !== activeIndex;
+                    slide.querySelectorAll('details[open]').forEach((hotspot) => {
+                        hotspot.open = false;
+                    });
+                });
+                dots.forEach((dot, index) => {
+                    dot.setAttribute('aria-current', index === activeIndex ? 'true' : 'false');
+                });
+                if (status) {
+                    status.textContent = language === 'mk'
+                        ? `Фотографија ${activeIndex + 1} од ${slides.length}`
+                        : `Photo ${activeIndex + 1} of ${slides.length}`;
+                }
+            };
+
+            slider.querySelector('[data-project-prev]').addEventListener('click', () => {
+                showSlide(activeIndex - 1);
+            });
+            slider.querySelector('[data-project-next]').addEventListener('click', () => {
+                showSlide(activeIndex + 1);
+            });
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => showSlide(index));
+            });
+            let touchStartX = null;
+            slider.addEventListener('touchstart', (event) => {
+                touchStartX = event.changedTouches[0].clientX;
+            }, { passive: true });
+            slider.addEventListener('touchend', (event) => {
+                if (touchStartX === null) return;
+                const swipeDistance = event.changedTouches[0].clientX - touchStartX;
+                touchStartX = null;
+                if (Math.abs(swipeDistance) > 50) {
+                    showSlide(activeIndex + (swipeDistance < 0 ? 1 : -1));
+                }
+            }, { passive: true });
+            slider.addEventListener('keydown', (event) => {
+                if (event.target.closest('summary')) return;
+                if (event.key === 'ArrowLeft') {
+                    event.preventDefault();
+                    showSlide(activeIndex - 1);
+                } else if (event.key === 'ArrowRight') {
+                    event.preventDefault();
+                    showSlide(activeIndex + 1);
+                }
+            });
+        })();
     </script>
 </body>
 </html>
